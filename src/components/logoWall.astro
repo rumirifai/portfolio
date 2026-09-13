@@ -1,19 +1,26 @@
 ---
-const technologies = [
-  "astro",
-  "vue",
-  "react",
-  "typeScript",
-  "tailwindcss",
-  "next",
-  "nodejs",
-  "HTML5",
-  "CSS3",
-  "javaScript",
-  "git",
-  "supabase",
-  "mysql",
-  "bash",
+interface Tech {
+  name: string;
+  icon: string;
+}
+
+const technologies: Tech[] = [
+  { name: "Node.js", icon: "nodejs" },
+  { name: "TypeScript", icon: "typeScript" },
+  { name: "JavaScript", icon: "javaScript" },
+  { name: "Python", icon: "python" },
+  { name: "FastAPI", icon: "fastapi" },
+  { name: "NestJS", icon: "nestjs" },
+  { name: "React", icon: "react" },
+  { name: "GraphQL", icon: "graphql" },
+  { name: "PostgreSQL", icon: "postgresql" },
+  { name: "MySQL", icon: "mysql" },
+  { name: "Docker", icon: "docker" },
+  { name: "Google Cloud", icon: "googlecloud" },
+  { name: "Git", icon: "git" },
+  { name: "HTML5", icon: "HTML5" },
+  { name: "CSS3", icon: "CSS3" },
+  { name: "TailwindCSS", icon: "tailwindcss" },
 ];
 ---
 
@@ -29,8 +36,8 @@ const technologies = [
           aria-hidden={index >= technologies.length ? "true" : "false"}
         >
           <img
-            src={`/svg/${tech}.svg`}
-            alt={tech}
+            src={`/svg/${tech.icon}.svg`}
+            alt={tech.name}
             class="h-7 w-auto object-contain transition-transform group-hover:scale-110 opacity-60"
             width="30"
             height="30"
@@ -38,7 +45,7 @@ const technologies = [
             decoding="async"
           />
           <span class="text-lg font-medium text-[var(--white-icon)] whitespace-nowrap">
-            {tech.charAt(0).toUpperCase() + tech.slice(1)}
+            {tech.name}
           </span>
         </div>
       ))

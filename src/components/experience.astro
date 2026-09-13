@@ -1,0 +1,95 @@
+---
+interface Experience {
+  title: string;
+  company: string;
+  period: string;
+  location: string;
+  bullets: string[];
+}
+
+const experiences: Experience[] = [
+  {
+    title: "IT Support Intern (Web Developer)",
+    company: "PT Mahat Masagi Unpad Holding",
+    period: "Dec 2025 – Feb 2026",
+    location: "Bandung, Indonesia",
+    bullets: [
+      'Engineered a web-based prototype, "Ngatour by MMU", using HTML, CSS, and JavaScript with a Multi-Page Application architecture to automate mass travel ticket bookings.',
+      "Implemented an automated Excel data parsing and validation feature utilizing SheetJS, significantly reducing manual data entry errors for mass participant processing.",
+      "Designed a Maker-Approver authorization workflow and integrated a simulated e-wallet dashboard to monitor budget allocations and expenditures across university faculties.",
+    ],
+  },
+  {
+    title: "Backend Developer (Freelance)",
+    company: "Himatif Apps | Informatics Engineering Student Association UNPAD",
+    period: "Feb 2025 – Nov 2025",
+    location: "Sumedang, Indonesia",
+    bullets: [
+      "Engineered RESTful API endpoints and maintained core backend services for the official student association website, ensuring high availability for hundreds of active students.",
+      "Managed MySQL database architecture by executing schema updates and routine backups to preserve data integrity and optimize system performance.",
+    ],
+  },
+  {
+    title: "Laboratory Teaching Assistant",
+    company: "Padjadjaran University",
+    period: "Feb 2024 – Jul 2026",
+    location: "Sumedang, Indonesia",
+    bullets: [
+      "Mentored and instructed over 50+ students in fundamental Object-Oriented Programming concepts through engaging weekly lectures.",
+      "Designed and delivered a 2-hour weekly practical lecture, translating complex theories into hands-on programming exercises.",
+      "Evaluated and provided constructive feedback on weekly assignments to reinforce learning objectives and improve student code quality.",
+    ],
+  },
+  {
+    title: "Cloud Computing Cohort",
+    company: "Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka",
+    period: "Sep 2024 – Dec 2024",
+    location: "Bandung, Indonesia",
+    bullets: [
+      "Architected and deployed a scalable backend API using Go and PostgreSQL on Google Cloud Platform (Cloud Run, Cloud SQL) for a cross-functional capstone project.",
+      "Applied containerization and CI/CD principles to streamline deployment workflows, validating expertise through the completion of 40+ technical labs on Google Cloud infrastructure.",
+    ],
+  },
+];
+---
+
+<section
+  id="experience"
+  class="py-12 border-t border-[#ffffff10] text-[var(--white)]"
+>
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">My journey</h2>
+    <h3 class="text-4xl md:text-5xl font-medium mb-12">Experience</h3>
+
+    <div class="relative border-l-2 border-[var(--white-icon-tr)] space-y-10 pl-8 ml-2">
+      {
+        experiences.map((exp) => (
+          <div class="relative">
+            {/* Timeline dot */}
+            <div class="absolute -left-[2.85rem] top-1 w-5 h-5 bg-[var(--sec)] rounded-full border-4 border-[var(--background)]" />
+
+            {/* Card */}
+            <div class="bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6 hover:border-[var(--white-icon)] transition-all duration-300">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1">
+                <h4 class="font-semibold text-lg text-[var(--white)]">{exp.title}</h4>
+                <span class="text-sm text-[var(--white-icon)] shrink-0">{exp.period}</span>
+              </div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between text-sm mb-4 gap-1">
+                <p class="text-[var(--sec)] font-medium">{exp.company}</p>
+                <span class="text-xs text-[var(--white-icon)] opacity-70">{exp.location}</span>
+              </div>
+              <ul class="space-y-2">
+                {exp.bullets.map((bullet) => (
+                  <li class="flex items-start gap-2 text-sm text-[var(--white-icon)]">
+                    <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[var(--sec)] shrink-0" />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

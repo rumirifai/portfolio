@@ -1,131 +1,258 @@
 ---
-
 interface Project {
   title: string;
-  image: string;
-  link: string;
-  preview: string;
+  role: string;
   status: string;
+  statusType: "live" | "thesis" | "backend" | "internal" | "standard";
+  description: string;
+  tags: string[];
+  linkDemo?: string;
+  linkFE?: string;
+  linkBE?: string;
+  highlight?: boolean;
 }
 
 const projects: Project[] = [
   {
-    title: "Project One",
-    image: "https://placehold.co/600x400/1a1a1a/ffffff?text=Project+One",
-    link: "https://github.com",
-    preview: "https://example.com",
-    status: "Deployed",
+    title: "HRV-Labs",
+    role: "Deep Learning & DSP Researcher",
+    status: "Undergraduate Thesis",
+    statusType: "thesis",
+    description: "Undergraduate thesis research classifying cognitive load levels from physiological heart rate signals (ECG & PPG) using a hybrid CNN-LSTM architecture, featuring an interactive Flask analytics dashboard.",
+    tags: ["Python 3.13", "TensorFlow", "CNN-LSTM", "Flask", "DSP / Sensors"],
+    linkBE: "https://github.com/rumirifai/hrv-labs",
+    highlight: true,
   },
   {
-    title: "Project Two",
-    image: "https://placehold.co/600x400/1a1a1a/ffffff?text=Project+Two",
-    link: "https://github.com",
-    preview: "https://example.com",
-    status: "On Development",
+    title: "Himatif Apps V2",
+    role: "Backend Developer & Maintainer",
+    status: "Live Production",
+    statusType: "live",
+    description: "Official web platform for the Padjadjaran University Informatics Engineering Student Association. Engineered core backend services and managed MySQL database architecture for hundreds of active students.",
+    tags: ["Express.js", "React.js", "MySQL", "REST API"],
+    linkDemo: "https://apps.himatif.org/",
   },
   {
-    title: "Project Three",
-    image: "https://placehold.co/600x400/1a1a1a/ffffff?text=Project+Three",
-    link: "https://github.com",
-    preview: "https://example.com",
-    status: "Contributor",
+    title: "Becycle — Waste Exchange",
+    role: "Full-Stack Developer",
+    status: "Full-Stack System",
+    statusType: "standard",
+    description: "Collaborative waste management and recyclable materials exchange platform. Integrated an interactive React frontend with dual microservice backends built on Express.js and Flask.",
+    tags: ["React.js", "Express.js", "Flask", "TailwindCSS"],
+    linkFE: "https://github.com/rumirifai/becycle-web",
+    linkBE: "https://github.com/MSATRIAD/Project-PPL",
   },
   {
-    title: "Project Four",
-    image: "https://placehold.co/600x400/1a1a1a/ffffff?text=Project+Four",
-    link: "https://github.com",
-    preview: "https://example.com",
-    status: "Deployed",
+    title: "Wawacan Digital",
+    role: "Full-Stack Developer",
+    status: "Full-Stack System",
+    statusType: "standard",
+    description: "Historical Sundanese Wawacan manuscript preservation and semantic reading platform. Powered by a high-efficiency FastAPI search & pagination backend and a responsive SvelteKit interface.",
+    tags: ["FastAPI", "Python", "SvelteKit", "REST API"],
+    linkFE: "https://github.com/rumirifai/wawacan-web",
+    linkBE: "https://github.com/rumirifai/wawacan-api",
+  },
+  {
+    title: "Codetid API",
+    role: "Cloud & Backend Developer",
+    status: "Backend API",
+    statusType: "backend",
+    description: "Scalable RESTful API for Bangkit Capstone mobile application, architected with containerized microservices deployed on Google Cloud Platform (Cloud Run & Cloud SQL).",
+    tags: ["Express.js", "FastAPI", "Google Cloud Platform", "Cloud SQL"],
+    linkBE: "https://github.com/rumirifai/codetid-api",
+  },
+  {
+    title: "KEPO 2024 Portal",
+    role: "Web Developer",
+    status: "Live Portal",
+    statusType: "live",
+    description: "Lightweight and high-speed static event portal for the KEPO 2024 informatics orientation program, optimized for fast mobile accessibility.",
+    tags: ["JavaScript", "HTML5", "CSS3"],
+    linkDemo: "https://kepo2024.vercel.app/",
+    linkBE: "https://github.com/rumirifai/KEPO-2024-WEB-APP",
+  },
+  {
+    title: "Ngatour by MMU (Prototype)",
+    role: "Web Developer Intern",
+    status: "Internal System",
+    statusType: "internal",
+    description: "Automated mass travel booking web prototype featuring SheetJS Excel parsing and validation, Maker-Approver authorization workflow, and simulated faculty e-wallet budget tracking.",
+    tags: ["JavaScript", "SheetJS", "MPA Architecture", "PT Mahat Masagi Unpad"],
   },
 ];
 ---
 
 <section
   id="projects"
-  class="py-12 border-t border-[#ffffff10] text-[var(--white)]"
+  class="py-16 border-t border-[#ffffff10] text-[var(--white)]"
 >
-  <div class="max-w-5xl mx-auto">
-    <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">My work</h2>
-    <h3 class="text-4xl md:text-5xl font-medium mb-8">Projects</h3>
+  <div class="max-w-5xl mx-auto space-y-12">
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div>
+        <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">Portfolio</h2>
+        <h3 class="text-4xl md:text-5xl font-medium">Projects &amp; Systems</h3>
+      </div>
+      <p class="text-[var(--white-icon)] text-sm md:text-base max-w-md">
+        A curated selection of software engineering projects, backend architectures, machine learning research, and internal systems.
+      </p>
+    </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Unified Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
       {
         projects.map((project) => (
-          <div class="group">
-            <a
-              href={project.preview}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="block"
-            >
-              <div class="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  class="w-full h-48 md:h-72 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div class="flex items-center px-3">
-                <div class="flex-grow">
-                  <h4 class="text-2xl font-semibold">{project.title}</h4>
-                  <span class="py-1 text-sm text-[var(--white-icon)]">
-                    {project.status}
-                  </span>
-                </div>
-                <div class="flex gap-2 ml-auto">
-                  <a
-                    target="_blank"
-                    href={project.link}
-                    aria-label="GitHub"
-                    class="size-14 flex justify-center items-center text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      class="size-7"
-                    >
-                      <path d="M24 12L18.3431 17.6569L16.9289 16.2426L21.1716 12L16.9289 7.75736L18.3431 6.34315L24 12ZM2.82843 12L7.07107 16.2426L5.65685 17.6569L0 12L5.65685 6.34315L7.07107 7.75736L2.82843 12ZM9.78845 21H7.66009L14.2116 3H16.3399L9.78845 21Z" />
+          <div
+            class={`bg-[#1414149c] rounded-2xl p-7 flex flex-col justify-between border transition-all duration-300 group hover:-translate-y-1 hover:shadow-xl ${
+              project.highlight
+                ? "border-[var(--sec)]/50 shadow-lg shadow-[var(--sec)]/5 hover:border-[var(--sec)]"
+                : "border-[var(--white-icon-tr)] hover:border-[var(--white-icon)]"
+            }`}
+          >
+            <!-- Top: Icon & Status Badge -->
+            <div>
+              <div class="flex items-center justify-between gap-3 mb-4">
+                <div class="size-10 rounded-xl bg-white/5 border border-[var(--white-icon-tr)] flex items-center justify-center text-[var(--sec)] group-hover:bg-[var(--sec)]/10 transition-colors">
+                  {project.statusType === "thesis" ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5">
+                      <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+                      <path d="M6 6h10"/>
+                      <path d="M6 10h10"/>
                     </svg>
-                  </a>
+                  ) : project.statusType === "backend" ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5">
+                      <rect width="20" height="8" x="2" y="2" rx="2" ry="2"/>
+                      <rect width="20" height="8" x="2" y="14" rx="2" ry="2"/>
+                      <line x1="6" x2="6.01" y1="6" y2="6"/>
+                      <line x1="6" x2="6.01" y1="18" y2="18"/>
+                    </svg>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5">
+                      <polyline points="16 18 22 12 16 6"/>
+                      <polyline points="8 6 2 12 8 18"/>
+                    </svg>
+                  )}
+                </div>
+
+                <!-- Status Badge -->
+                <span
+                  class={`text-xs px-3 py-1 rounded-full border flex items-center gap-1.5 font-medium ${
+                    project.statusType === "live"
+                      ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
+                      : project.statusType === "thesis"
+                      ? "border-[var(--sec)]/40 bg-[var(--sec)]/15 text-[var(--sec)]"
+                      : project.statusType === "internal"
+                      ? "border-amber-500/30 bg-amber-500/10 text-amber-300"
+                      : "border-white/10 bg-white/5 text-[var(--white-icon)]"
+                  }`}
+                >
+                  {project.statusType === "live" && (
+                    <span class="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  )}
+                  {project.status}
+                </span>
+              </div>
+
+              <!-- Title & Role -->
+              <h4 class="text-2xl font-semibold text-[var(--white)] group-hover:text-[var(--sec)] transition-colors">
+                {project.title}
+              </h4>
+              <p class="text-xs text-[var(--sec)] font-mono uppercase tracking-wider mt-1 mb-3">
+                {project.role}
+              </p>
+
+              <!-- Description -->
+              <p class="text-sm text-[var(--white-icon)] leading-relaxed mb-6">
+                {project.description}
+              </p>
+            </div>
+
+            <!-- Bottom: Tags & Action Buttons -->
+            <div>
+              <!-- Tech Stack Tags -->
+              <div class="flex flex-wrap gap-2 mb-6">
+                {project.tags.map((tag) => (
+                  <span class="text-xs bg-[var(--white-icon-tr)] text-[var(--white-icon)] px-2.5 py-1 rounded-lg border border-transparent group-hover:border-white/5 transition-colors">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <!-- Action Links -->
+              <div class="flex flex-wrap items-center gap-2.5 pt-4 border-t border-[#ffffff0f]">
+                {project.linkDemo && (
                   <a
+                    href={project.linkDemo}
                     target="_blank"
-                    href={project.preview}
-                    aria-label="Preview"
-                    class="size-14 flex justify-center items-center text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
+                    rel="noopener noreferrer"
+                    class="flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-xl bg-white text-black hover:bg-[var(--sec)] transition-all duration-300"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      class="size-7"
-                    >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-3.5">
                       <path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z" />
                     </svg>
+                    Live Demo
                   </a>
-                </div>
+                )}
+
+                {project.linkFE && (
+                  <a
+                    href={project.linkFE}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center gap-1.5 text-xs font-medium px-3.5 py-2 rounded-xl border border-[var(--white-icon-tr)] text-[var(--white-icon)] hover:text-white hover:bg-[var(--white-icon-tr)] transition duration-300"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-3.5">
+                      <path d="M24 12L18.3431 17.6569L16.9289 16.2426L21.1716 12L16.9289 7.75736L18.3431 6.34315L24 12ZM2.82843 12L7.07107 16.2426L5.65685 17.6569L0 12L5.65685 6.34315L7.07107 7.75736L2.82843 12ZM9.78845 21H7.66009L14.2116 3H16.3399L9.78845 21Z" />
+                    </svg>
+                    Frontend
+                  </a>
+                )}
+
+                {project.linkBE && (
+                  <a
+                    href={project.linkBE}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center gap-1.5 text-xs font-medium px-3.5 py-2 rounded-xl border border-[var(--white-icon-tr)] text-[var(--white-icon)] hover:text-white hover:bg-[var(--white-icon-tr)] transition duration-300"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-3.5">
+                      <path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z" />
+                    </svg>
+                    {project.linkFE ? "Backend" : "Repository"}
+                  </a>
+                )}
+
+                {!project.linkDemo && !project.linkFE && !project.linkBE && (
+                  <span class="text-xs text-[var(--white-icon)] opacity-60 flex items-center gap-1.5 py-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-3.5">
+                      <path d="M18 8H17V6C17 3.24 14.76 1 12 1C9.24 1 7 3.24 7 6V8H6C4.9 8 4 8.9 4 10V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V10C20 8.9 19.1 8 18 8ZM9 6C9 4.34 10.34 3 12 3C13.66 3 15 4.34 15 6V8H9V6Z" />
+                    </svg>
+                    Internal System (PT MMU)
+                  </span>
+                )}
               </div>
-            </a>
+            </div>
           </div>
         ))
       }
     </div>
+
+    <!-- More on GitHub CTA -->
     <a
       target="_blank"
-      href="https://github.com"
+      href="https://github.com/rumirifai"
       aria-label="GitHub"
-      class="w-full flex items-center justify-center gap-2 mt-9 text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] p-3 rounded-full bg-[#1414149c] hover:bg-[var(--white-icon-tr)] hover:scale-105"
+      class="w-full flex items-center justify-center gap-2 text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] p-3.5 rounded-full bg-[#1414149c] hover:bg-[var(--white-icon-tr)] hover:scale-105"
     >
-      <span class="md:text-lg text-md">More projects on</span>
+      <span class="md:text-base text-sm">Explore more repositories on</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
-        class="size-6"
+        class="size-5"
       >
         <path
-          d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"
-        ></path>
+          d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z" />
       </svg>
     </a>
   </div>
